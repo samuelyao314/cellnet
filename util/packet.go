@@ -102,7 +102,7 @@ func SendLTVPacket(writer io.Writer, ctx cellnet.ContextSet, data interface{}) e
 	pkt := make([]byte, bodySize+msgIDSize+len(msgData))
 
 	// Length
-	binary.LittleEndian.PutUint16(pkt, uint16(msgIDSize+len(msgData)))
+	binary.LittleEndian.PutUint32(pkt, uint16(msgIDSize+len(msgData)))
 
 	// Type
 	binary.LittleEndian.PutUint16(pkt[bodySize:], uint16(msgID))
