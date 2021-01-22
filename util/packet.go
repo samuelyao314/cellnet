@@ -6,6 +6,7 @@ import (
 	"github.com/davyxu/cellnet"
 	"github.com/davyxu/cellnet/codec"
 	"io"
+    "log"
 )
 
 var (
@@ -21,8 +22,8 @@ const (
 
 // 接收Length-Type-Value格式的封包流程
 func RecvLTVPacket(reader io.Reader, maxPacketSize int) (msg interface{}, err error) {
-
-	// Size为uint16，占2字节
+    log.Println("bodySize: %v", bodySize)
+	// Size为uint32，占4字节
 	var sizeBuffer = make([]byte, bodySize)
 
 	// 持续读取Size直到读到为止
@@ -101,6 +102,7 @@ func SendLTVPacket(writer io.Writer, ctx cellnet.ContextSet, data interface{}) e
 
 	pkt := make([]byte, bodySize+msgIDSize+len(msgData))
 
+    log.Println("bodySize: %v", bodySize)
 	// Length
 	binary.LittleEndian.PutUint32(pkt, uint32(msgIDSize+len(msgData)))
 
