@@ -15,7 +15,7 @@ var (
 )
 
 const (
-	bodySize  = 2 // 包体大小字段
+	bodySize  = 4 // 包体大小字段
 	msgIDSize = 2 // 消息ID字段
 )
 
